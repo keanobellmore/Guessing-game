@@ -14,14 +14,21 @@ import Foundation
 // 5.if correct ask if they want to play again
 // 6.if incorrect tell them and then ask to play again
 
-var randomNumber = arc4random_uniform(100)
+
+
+var randomNumber = Int(arc4random_uniform(100))
+var input: Int?
+var maxGuesses = 5
+
 print("guess a random number")
-var input = readLine()
-var numInput = uint32(input!)!
-if randomNumber == numInput{
- print("you're correct")
 
+input = Int(readLine()!)!
+if randomNumber == input {
+    print("You won! :)")
 
-} else  
+} else if randomNumber > input! {
+    print("higher🤣")
+} else if randomNumber < input! {
+    print("lower🤣") }
 
 
