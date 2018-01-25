@@ -14,21 +14,60 @@ import Foundation
 // 5.if correct ask if they want to play again
 // 6.if incorrect tell them and then ask to play again
 
-
-
 var randomNumber = Int(arc4random_uniform(100))
-var input: Int?
-var maxGuesses = 5
+var guess: Int?
+var tries = 2
+var playingGame: Bool = true
 
-print("guess a random number")
+while playingGame == true{
 
-input = Int(readLine()!)!
-if randomNumber == input {
-    print("You won! :)")
+print("Please guess a number.")
+    
+    
+guess = Int(readLine()!)!
+    if guess == nil{
+        print("please type a number")
+    }
 
-} else if randomNumber > input! {
-    print("higher🤣")
-} else if randomNumber < input! {
-    print("lower🤣") }
 
 
+while guess != randomNumber && tries <= 5 {
+    if randomNumber > guess!  {
+        print("The number was higher! 🤦‍♂️")
+    }
+    else if randomNumber < guess! {
+        print("The Random Number was lower! 🤦‍♂️")
+    }
+    print("Guess again")
+    guess = Int(readLine()!)!
+    tries += 1
+    
+}
+
+
+if randomNumber == guess! {
+    print("YOU WON !!!!!!!! 🎉")
+    print("would you like to play again?")
+    var answer = readLine()
+    if answer == nil{
+        print("please type yes or no")
+    if answer == "no"{
+        playingGame = false
+    }
+}
+if tries > 5{
+    print("Max number of tries reached. The correct number is \(randomNumber)")
+    
+}
+if guess != randomNumber{
+    print("would you like to play again?")
+    var answer = readLine()
+    if answer == nil{
+        print("please type yes or no")
+    }
+    if answer == "no"{
+        playingGame = false
+    }
+}
+}
+}
