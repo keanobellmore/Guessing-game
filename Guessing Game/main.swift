@@ -5,69 +5,67 @@
 //  Created by Keano Bellmore on 1/23/18.
 //  Copyright © 2018 Keano Bellmore. All rights reserved.
 //
-
 import Foundation
-// 1.generate a random number
-// 2.ask user input
-// 3.take user unput
-// 4.determine wrong or right(loop until correct)
-// 5.if correct ask if they want to play again
-// 6.if incorrect tell them and then ask to play again
+
+
+
+
+
+var playingGame = true
+
+func checkNumber(userGuess: Int) -> Int {
+    var guess = Int(readLine()!)
+    while guess == nil {
+        print("Guess again")
+        guess = Int(readLine()!)!
+    }
+    return guess!
+}
+
+
+while playingGame {
 
 var randomNumber = Int(arc4random_uniform(100))
 var guess: Int?
-var tries = 2
-var playingGame: Bool = true
+var tries = 1
 
-while playingGame == true{
-
-print("Please guess a number.")
+    print("Guess a random number")
     
     
-guess = Int(readLine()!)!
-    if guess == nil{
-        print("please type a number")
-    }
-
-
-
-while guess != randomNumber && tries <= 5 {
-    if randomNumber > guess!  {
-        print("The number was higher! 🤦‍♂️")
-    }
-    else if randomNumber < guess! {
-        print("The Random Number was lower! 🤦‍♂️")
-    }
-    print("Guess again")
-    guess = Int(readLine()!)!
-    tries += 1
     
-}
-
-
+    
+    
+    
+guess = Int(readLine()!)
+    guess = checkNumber(userGuess: guess!)
+    
+    
+while guess != randomNumber && tries < 5 {
+    
+    if randomNumber > guess! {
+            print("Higher")
+        } else if randomNumber < guess! {
+            print("Lower")
+        }
+        print("guess again")
+        guess = Int(readLine()!)!
+        guess = checkNumber(userGuess: guess!)
+        tries += 1
+    }
 if randomNumber == guess! {
-    print("YOU WON !!!!!!!! 🎉")
-    print("would you like to play again?")
-    var answer = readLine()
-    if answer == nil{
-        print("please type yes or no")
-    if answer == "no"{
+    print("you won!")
+    print("do you want to play again?")
+}
+
+if tries == 5 {
+print("max number of tries reached. the number was \(randomNumber). do you want to play again?")
+var answer = readLine()
+    while answer?.lowercased() != "yes" && answer?.lowercased() != "no"{
+        print("please only say yes or no")
+    answer = readLine()
+    }
+    if answer?.lowercased() == "no" {
         playingGame = false
     }
-}
-if tries > 5{
-    print("Max number of tries reached. The correct number is \(randomNumber)")
-    
-}
-if guess != randomNumber{
-    print("would you like to play again?")
-    var answer = readLine()
-    if answer == nil{
-        print("please type yes or no")
-    }
-    if answer == "no"{
-        playingGame = false
-    }
-}
 }
 }
